@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    
+   
+   <div class="card shadow-lg" style="width: 100%;  background-Color: #3E50B4; color: #fff; margin-bottom: 5px">
+        <div class="card-body" >
+            <h5 class="card-title">Graduação</h5>
+            <div class="row">
+                <div class="col-sm-9 " style="max-width: 75%;  padding:0 0 0 10px">
+                    <canvas id="chartGraduacao" width="400" height="200"  ></canvas>
+                </div>
+                 
+                <div id="h_estudo" class="col-sm-3" style="max-width: 25%;  ">
+                    <h4 class="card-text text-right">1440</h4>
+                    <p class="card-text text-right">Horas de Estudo</p>
+                </div>
+                
+            </div>  
+            <div>
+            <canvas id="chartBar" width="400" height="100"  ></canvas>
+            </div>
+
+            <div class="progress" style=" margin-bottom: 5px">
+                <div class="progress-bar bg-success progress-bar-striped" role="progressbar" aria-valuenow="50"   aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                <span >50%</span>
+            </div>
+    </div>
+        </div>
+    </div> 
+    
+
+    <div class="progress" style=" margin-bottom: 5px">
+        <div class="progress-bar bg-success" role="progressbar" style="width:40%">
+            Extensão
+        </div>
+    <div class="progress-bar bg-warning" role="progressbar" style="width:10%">
+        Lato
+    </div>
+        <div class="progress-bar bg-danger" role="progressbar" style="width:20%">
+            Stricto
+        </div>
+    </div>
+   
+   
+   
+    <div  >
+        <div class="row">
+   
+            <div class="col-sm-8 " style="margin-bottom: 5px">
+                <a href="{% url 'especializacao' %}">
+                <div class="card shadow-lg" style="width: 100%;  background-Color: #00BCD4; color: #fff">
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">Especialização</h5>
+                        <div class="row">
+                            <div class="col-sm-4" style="max-width: 33%; padding:0">
+                                <canvas id="chartEspecialista1" width="200" height="200"></canvas>
+                            </div>
+                            <div class="col-sm-4" style="max-width: 33%; padding:0">
+                                <canvas id="chartEspecialista2" width="200" height="200"></canvas>
+                            </div>
+                            <div class="col-sm-4" style="max-width: 33%; padding:0">
+                                <canvas id="chartEspecialista3" width="200" height="200"></canvas>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <div class="col-sm-4 " style="margin-bottom: 5px">
+                <div class="card shadow-lg" style="width: 100%;  background-Color: #F44336; color: #fff">
+                    <div class="card-body">
+                        <h5 class="card-title">Pesquisa</h5>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+     <div>
+        <div class="row" >
+   
+            <div class="col-sm-6" style="margin-bottom: 5px">
+                <div class="card shadow-lg" style="width: 100%;  background-Color: #009688; color: #fff">
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">Dupla Titulação</h5>
+                        <div class="row">
+                            <div class="col-sm-6" style="max-width: 50%; padding:0">
+                                <canvas id="chartDuplaTitulacao1" width="200" height="200"></canvas>
+                            </div>
+                            <div class="col-sm-6" style="max-width: 50%; padding:0">
+                                <canvas id="chartDuplaTitulacao2" width="200" height="200"></canvas>
+                            </div>
+                           
+                        </div>  
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6" style="margin-bottom: 5px">
+                <div class="card shadow-lg" style="width: 100%;  background-Color: #00BCD4; color: #fff">
+                    <div class="card-body">
+                        <h5 class="card-title">Experimentação</h5>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" style="background-color: #F53794">Cultura</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" style="background-color: #BDCD6B">Cidadania</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" style="background-color: #537BC4">Tecnologia e Inovação</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="/static/js/centerLabelChartjs.js"></script>
+
+
+<script>
+
+$(document).ready(function () {
+    var defaultLegendClickHandler = Chart.defaults.global.legend.onClick;
+    var newLegendClickHandler = function (e, legendItem) {
+        console.log(e);
+    };
+
+
+    var dados = {{ graduacaoData|safe }};
+    addChartDonut(dados,"chartGraduacao",true, false);
+    console.log(dados.centerTotal);
+
+    var i=1;
+    {% for especializacao in especializacoes %}
+        var dados = {{ especializacao|safe }};
+        var canvasName = "chartEspecialista"+i;
+        addChartDonut(dados,canvasName,false,true);
+        i++;
+    {% endfor %}
+
+    i=1;
+    {% for duplaTitula in duplaTitulacao %}
+        var dados = {{ duplaTitula|safe }};
+        var canvasName = "chartDuplaTitulacao"+i;
+        addChartDonut(dados,canvasName,false,true);
+        i++;
+    {% endfor %}
+
+    var barchart = addChartBar("chartBar");
+
+
+    function addChartDonut(data, idCanvas, showLegend, showTitle){
+        var ctx = document.getElementById(idCanvas);
+        console.log(data.datasets.centerTotal)
+        var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        
+        data: {
+            labels: data.labels, 
+            datasets: [data.datasets],
+        },
+        
+        options:{
+            responsive: true,
+            cutoutPercentage:50, 
+            legend: {
+                display: showLegend,
+               
+                position: 'right',
+                align: 'start',
+                
+                labels: {
+                    fontColor: 'rgb(255, 255, 255)',
+                    padding: 10,
+                    boxWidth: 10,
+                    fontSize: 10
+                }
+            },
+            title: {
+                display: showTitle,
+                fontColor: 'rgb(255, 255, 255)',
+                position: 'bottom',
+                text:  data.datasets.label
+            },
+            elements: {
+				center: {
+					text: data.centerTotal,
+                    color: '#fff', // Default is #000000
+                    fontStyle: 'Arial', // Default is Arial
+                    sidePadding: 20 // Defualt is 20 (as a percentage)
+				}
+			}
+        }
+        });
+    };
+
+
+    function addChartBar(idCanvas){
+        var ctx = document.getElementById(idCanvas);
+        
+        var myChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data:  {
+                labels: [ '2019'],
+                datasets: [{
+                    label: 'Extensao',
+                    backgroundColor: 'rgb(172, 194, 54)',
+                    data: [4,]
+                }, {
+                    label: 'Stricto Sensu',
+                    fontColor: "white",
+                    backgroundColor: 'rgb(246, 112, 25)',
+                    data: [1,]
+                }, {
+                    label: 'Lato Sensu',
+                    backgroundColor: 'rgb(83, 123, 196)',
+                    data: [2,]
+                }]
+
+            },
+            options: {
+                responsive: true,
+                legend: {
+                    labels: {
+                        fontColor: "white",
+                        fontSize: 10
+                    },
+                    position: 'bottom',
+                    display: true
+                },
+
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                        ticks: {
+                            fontColor: "white",
+                            fontSize: 10
+                        }
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                        ticks: {
+                            fontColor: "white",
+                            fontSize: 10
+                        }
+                    }]
+                },
+
+               
+            }
+        });
+
+        return myChart;
+    };
+
+    function updateChart(mc) {
+        
+        if (mc.matches) { // If media query matches
+            barchart.options.legend.display = false;
+            
+        } else {
+            barchart.options.legend.display = true;
+            
+        }
+
+        barchart.update;
+    }
+
+    var mediaChange = window.matchMedia("(max-width: 372px)")
+    updateChart(mediaChange) 
+    mediaChange.addListener(updateChart) 
+
+});
+
+
+
+
+
+</script>
+{% endblock %}

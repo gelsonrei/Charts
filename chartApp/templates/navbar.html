@@ -1,0 +1,82 @@
+  <div class="wrapper-simplificado">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark " id="grupo">
+      <div class="container">
+        <a class="navbar-brand d-block d-xl-none" href="https://www.ucs.br/site/"><img src="/static/img/logo-ucs.png" class="brand logo-menor" alt="Universidade de Caxias do Sul"></a>
+        <a class="navbar-brand d-none d-xl-block" href="https://www.ucs.br/site/"><img src="https://www.ucs.br/site/midia/arquivos/logo-ucs-horizontal-branco.png" width="291" height="17" class="brand" alt="Universidade de Caxias do Sul"></a>
+
+        <button class="navbar-toggler pesquisa d-flex d-lg-none" type="button" data-toggle="collapse" data-target="#pesquisa" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-search"></i>
+        </button>
+        
+        <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbars" data-parent="#grupo">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/site/graduacao/">Graduação</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/site/portallato/">Especializações e mbas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/site/pos-graduacao/formacao-stricto-sensu/">Mestrados e Doutorados</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/site/extensao/">Extensão e serviços</a>
+            </li>
+          </ul>
+
+          <form action="/site/busca/" class="form-inline my-2 my-md-0 d-none d-lg-flex">
+            <div class="input-group">
+              <input type="text" class="form-control form-control-sm" name="q" placeholder="Pesquisar..." aria-label="Pesquisar" aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary btn-sm" type="submit" id="button-addon2"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="pesquisa" data-parent="#grupo">
+          <div class="container px-0">
+            <form action="/site/busca/" class="my-2 my-lg-0 w-100">
+              <div class="input-group">
+                <input type="text" class="form-control form-control-sm" name="q" placeholder="Pesquisar..." aria-label="Pesquisar" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary btn-sm" type="submit" id="button-addon2"><i class="fa fa-arrow-right"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+  
+  
+    <div class="text-white bg-primary  shadow-sm " style=" margin-bottom:5px;">
+      <div class="row" >
+        <div class="col" >
+          <div class="dropdown">
+              <button class="btn btn-primary btn-lg dropdown-toggle "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Administração
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Administração</a>
+                <a class="dropdown-item" href="#">Comércio Internacional</a>
+                <a class="dropdown-item" href="#">Contábies</a>
+                <a class="dropdown-item" href="#">Economia</a>
+              </div>
+          </div>
+        </div>  
+        <div class="col  text-right " >
+          <div id="alerta" >
+            <span class="p1 fa-stack fa-lg has-badge"  data-count="4">
+              <i class="p3 fa fa-bell fa-stack-1x " data-count="4b"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

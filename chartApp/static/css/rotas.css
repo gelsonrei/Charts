@@ -1,0 +1,119 @@
+ #alerta .p1[data-count]:after{
+    position:absolute;
+    right:20%;
+    top:20%;
+    content: attr(data-count);
+    font-size:50%;
+    padding: 0em;
+    border-radius:50%;
+    line-height:1em;
+    color: white;
+    background:rgba(0,255,0,.85);
+    text-align:center;
+    min-width: 1em;
+    
+  }
+
+
+
+  .scrolling-wrapper-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+
+    
+  
+ 
+    .scrolling-wrapper-flexbox .card {
+        flex: 0 0 auto;
+       
+    }
+
+    .card-horizontal{
+        min-width: 200px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23) !important;
+          
+    }
+
+    .card-horizontal-container{
+        background-color: #ecebeb;
+       
+    }
+ 
+    #accordionEspecializacao .card-header{
+       
+        padding: 10px;
+        color: #fff;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23) !important;
+       
+    }
+
+    #accordionEspecializacao .card{
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23) !important;
+    }
+
+
+    #heading01{
+        background-color: #3E50B4;
+    }
+    #heading02{
+        background-color: #288ab8;
+    }
+    #heading03{
+        background-color: #5e4696;
+    }
+
+   
+
+    .card-disciplina{
+        background-color: #ccc;
+        width: 50px;
+        height: 50px;
+        max-width: 48px;
+        min-width: 48px;
+        margin: 3px;
+    }
+
+    .realizado{
+        background-color: #fa0 !important;
+    }
+
+   
+
+  @media only screen and (max-width: 368px) {
+    #h_estudo p{
+      font-size: 0.8rem;
+    }
+
+    #h_estudo h4{
+        font-size: 1.1rem;
+    }
+  }
+
+  @media only screen and (min-width: 568px) {
+  ::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 8px;
+        background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar
+    {
+       
+        height: 8px !important;
+        background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar-thumb
+    {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: rgb(72, 197, 219);
+    }
+}
+
+
+  
